@@ -10,6 +10,22 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
+// Function to get a user ID for all operations
+async function getDefaultUserId(ctx: any): Promise<Id<"users">> {
+  try {
+    // Get the first user from the database
+    const user = await ctx.db.query("users").first();
+    if (user) {
+      return user._id;
+    }
+    // If no users exist, throw an error - the app requires at least one user to exist
+    throw new Error("No users found in database. Please create a user first.");
+  } catch (error) {
+    console.error("Error getting default user:", error);
+    throw error;
+  }
+}
+
 export const saveSketches = mutation({
   args: {
     sketchData: v.string(),

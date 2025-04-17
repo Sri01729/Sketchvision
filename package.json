@@ -8,7 +8,9 @@
     "dev:frontend": "vite --open",
     "dev:backend": "npx convex dev",
     "frontend-only": "vite --open",
-    "lint": "tsc -p convex -noEmit --pretty false && tsc -p . -noEmit --pretty false && npx convex dev --once && vite build"
+    "lint": "tsc -p convex -noEmit --pretty false && tsc -p . -noEmit --pretty false && npx convex dev --once && vite build",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@convex-dev/auth": "^0.0.81",
